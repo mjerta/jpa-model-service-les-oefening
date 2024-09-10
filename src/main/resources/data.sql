@@ -1,0 +1,1 @@
+INSERT INTO todos(description, title)VALUES ( 'doe iets', 'eerste todo');
