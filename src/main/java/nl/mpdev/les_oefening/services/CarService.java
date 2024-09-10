@@ -1,5 +1,6 @@
 package nl.mpdev.les_oefening.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import nl.mpdev.les_oefening.models.Car;
 import nl.mpdev.les_oefening.repository.CarRepository;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,11 @@ public class CarService {
   }
 
   public Car getCarById(int id) {
-    Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException("No Book found"));
+    Car car = carRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No Book found"));
     return car;
   }
+
+//  GET
 
   public List<Car> getAllCars() {
     return carRepository.findAll();
@@ -35,6 +38,13 @@ public class CarService {
   }
   public List<Car> getCarsByBrandAndModel(String brand, String model) {
     return carRepository.findCarsByBrandAndModel(brand, model);
+  }
+
+
+//  POST
+
+  public Car addCar(Car car) {
+    return carRepository.save(car);
   }
 
 }
